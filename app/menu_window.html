@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rural King</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" crossorigin="anonymous">
+		<link href="css/index.css" rel="stylesheet" type="text/css"/>
+		<style>
+			.flexy {
+				display: flex;
+				/* flex-flow: row nowrap; */
+				justify-content: space-around;
+			}
+			.lefty {
+				justify-content: left;
+				flex-grow: 1;
+			}
+			.righty {
+				padding: 5px 10px 0px 0px;
+			}
+		</style>
+  </head>
+  <body>
+		<div class="flexy">
+			<div class="lefty">
+				<i id="goback" class="fas fa-arrow-circle-left rk-buttons"></i>
+				<i id="resetpage" class="fas fa-home rk-buttons"></i>
+				<i id="goforward" class="fas fa-arrow-circle-right rk-buttons"></i>
+			</div>
+			<div class="righty">
+				<span id="timeout-warning">Timeout in x to x minutes</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		const x = document.getElementById("timeout-warning");
+		// include the ipc module to communicate with main process.
+		const { ipcRenderer } = require('electron') //.ipcRenderer;
+		
+		const rstBtnClick = document.getElementById('resetpage');
+		rstBtnClick.addEventListener('click', function () {
+			let arg ="secondparam";
+			//send the info to main process . we can pass any arguments as second param.
+			ipcRenderer.send("resetpage", arg); // ipcRender.send will pass the information to main process
+		});
+		
+		const backBtnClick = document.getElementById('goback');
+		backBtnClick.addEventListener('click', function () {
+			let arg ="secondparam";
+			//send the info to main process . we can pass any arguments as second param.
+			ipcRenderer.send("goback", arg); // ipcRender.send will pass the information to main process
+		});
+		
+		const frwdBtnClick = document.getElementById('goforward');
+		frwdBtnClick.addEventListener('click', function () {
+			let arg ="secondparam";
+			//send the info to main process . we can pass any arguments as second param.
+			ipcRenderer.send("goforward", arg); // ipcRender.send will pass the information to main process
+		});
+	</script>
+</html>

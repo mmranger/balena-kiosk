@@ -1,0 +1,27 @@
+{
+  "name": "electron-kiosk",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "dev"  : "NODE_ENV=development electron .",
+    "start": "NODE_ENV=production startx ./node_modules/electron/dist/electron .",
+    "local": "grep -v '^#' ../.env | sed 's/^/--env /' | xargs balena push 10.1.13.25"
+  },
+  "repository": "https://gitlab.rkdomain.net/PI/forks/electron-browser",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "dependencies": {
+    "electron"              : "^6.1.0",
+    "electron-rebuild"      : "^1.8.0",
+    "electron-localshortcut": "^3.1.0",
+    "desktop-idle"          : "^1.2.0"
+  },
+  "author": "Mike McQueen",
+  "license": "Apache-2.0"
+}

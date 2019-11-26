@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+​
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Store Kiosk</title>
+<style>
+  @font-face {
+    font-family: ArchivoBlack;
+    src: url(ArchivoBlack-Regular.ttf);
+  }
+
+  html {
+    text-align: center;
+    background: linear-gradient(to bottom right, #020024, #790916, #020024) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  #body_content {
+    margin-top: 1%;
+  }
+
+  .tile {
+    height: 400px;
+    width: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.65);
+    display: inline-block;
+    text-align: center;
+  }
+
+  .title {
+    line-height: 3.1;
+    font-size: 275%;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.65);
+    position: absolute;
+    top: 150px;
+    height: 33%;
+    width: 100%;
+    font-family: 'ArchivoBlack';
+  }
+
+  .tile-image {
+    height: 400px;
+    width: 400px;
+    text-align: center;
+    border-radius: 5%;
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* Images */
+  #rural-king-dot-com {
+    background-image: url("images/windmill.png");
+  }
+
+  #rktractors-dot-com {
+    background-image: url("images/tractor.png");
+  }
+
+  #rkguns-dot-com {
+    background-image: url("images/rkguns.png");
+  }
+
+  #harvest-card {
+    background-image: url("images/harvest-card.png");
+  }
+
+  /* Hover Effect */
+  .hvr-float-shadow {
+    display: inline-block;
+    margin: .5%;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+  }
+
+  .hvr-float-shadow:before {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    content: '';
+    top: 100%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 80%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 80%);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform, opacity;
+    transition-property: transform, opacity;
+  }
+
+  .hvr-float-shadow:hover,
+  .hvr-float-shadow:focus,
+  .hvr-float-shadow:active {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+
+  .hvr-float-shadow:hover:before,
+  .hvr-float-shadow:focus:before,
+  .hvr-float-shadow:active:before {
+    opacity: 1;
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+</style>
+</head>
+​
+<body>
+  <div id="body_content">
+    <div id="top-row">
+      <a href="https://www.ruralking.com/"
+      class="hvr-float-shadow tile tile-image"
+      id="rural-king-dot-com">
+        <div class="title">
+        RURAL KING
+        </div>
+      </a>
+      <a href="http://rktractors.com"
+      class="hvr-float-shadow tile tile-image"
+      id="rktractors-dot-com">
+        <div class="title">
+        RK TRACTORS
+        </div>
+      </a>
+    </div>
+    <div id="bottom-row">
+      <a href="https://www.rkguns.com/"
+      class="hvr-float-shadow tile tile-image"
+      id="rkguns-dot-com">
+        <div class="title">
+        RK GUNS
+        </div>
+      </a>
+      <a href="https://www.ruralking.com/harvest"
+      class="hvr-float-shadow tile tile-image"
+      id="harvest-card">
+        <div class="title">
+        HARVEST CARD
+        </div>
+      </a>
+    </div>
+  </div>
+</body>
+<script>
+  // // include the ipc module to communicate with main process.
+  // const { ipcRenderer } = require('electron') //.ipcRenderer;
+  // const tileLinks = document.getElementsByClassName("tile");
+  // tileLinks.addEventListener('click', function () {
+  // let arg = 'secondparam';
+  // ipcRenderer.send('click-link', arg);
+  // });
+</script>
+​
+</html>

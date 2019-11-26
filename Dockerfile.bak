@@ -1,0 +1,70 @@
+# FROM balenalib/raspberry-pi-debian-node:12
+# FROM resin/raspberry-pi-node:8-slim
+# FROM balenalib/raspberry-pi-node:12
+FROM balenalib/raspberrypi3-node:12
+# FROM resin/%%RESIN_MACHINE_NAME%%-node:8-slim
+
+# Install other apt deps
+RUN apt-get update && apt-get install -y --no-install-recommends \
+  apt-utils \
+  clang \
+  xserver-xorg-core \
+  xserver-xorg-input-all \
+  xserver-xorg-video-fbdev \
+  xorg \
+  libxcb-image0 \
+  libxcb-util0 \
+  xdg-utils \
+  libdbus-1-dev \
+  libgtk-3.0 \
+  # no dev
+  libnotify-dev \
+  libgnome-keyring-dev \
+  libgconf2-dev \
+  libasound2-dev \
+  libcap-dev \
+  libcups2-dev \
+  libxtst-dev \
+  libxss1 \
+  libxss-dev \
+  pkg-config \
+  build-essential \
+  g++ \
+  libnss3-dev \
+  libsmbclient \
+  libssh-4 \
+  fbset \
+  # numlockx \
+  # xscreensaver \
+  libexpat-dev && rm -rf /var/lib/apt/lists/*
+
+RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
+  # && echo "exec /usr/bin/X11/numlockx on &" >> /etc/X11/xinit/xserverrc \
+  # && echo 'export DISPLAY=:0' >> /etc/X11/xinit/xserverrc \
+  && echo 'exec /usr/bin/X -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc \
+  && echo 'exec xhost +localhost' >> /etc/X11/xinit/xserverrc \
+  && echo 'exec xscreensaver' >> /etc/X11/xinit/xserverrc
+  # && echo 'exec xscreensaver-demo' >> /etc/X11/xinit/xserverrc
+  # && echo 'exec /usr/bin/X -s 0 dpms -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
+
+# RUN sed -i 's|^exit 0.*$|# Numlock enable\n[ -x /usr/bin/X11/numlockx ] \&\& numlockx on\n\nexit 0|' /etc/rc.local
+
+# Move to app dir
+WORKDIR /usr/src/app
+
+# Move package.json to filesystem
+COPY ./package.json ./
+# COPY ./app/package.json ./
+
+# Install npm modules for the application
+RUN JOBS=MAX npm install --unsafe-perm --production && npm cache clean --force && \
+  rm -rf /tmp/* && node_modules/.bin/electron-rebuild
+
+# Move app to filesystem
+COPY ./app ./
+
+## uncomment if you want systemd
+ENV INITSYSTEM on
+
+# Start app
+CMD ["bash", "/usr/src/app/start.sh"]

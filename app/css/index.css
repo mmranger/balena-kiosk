@@ -1,0 +1,42 @@
+@font-face {
+    font-family: ArchivoBlack;
+    src: url(ArchivoBlack-Regular.ttf);
+}
+html,
+body {
+  background: linear-gradient(to bottom right, #020024, #790916, #020024) no-repeat center center fixed;
+  overflow: hidden;
+  padding-left: 5px;
+  color: white;
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+}
+
+.rk-buttons {
+    border-radius: 10%;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
+    font-size: 100px;
+}
+
+.rk-buttons > div {
+    text-align: center;
+}
+/* 
+.rk-buttons:hover {
+    box-shadow: 0 2px 0 #044D7F;
+    top: 2px;
+}
+
+.rk-buttons:hover > span {
+    top: -42px;
+}
+
+.rk-buttons:active {
+    box-shadow: 0 0 0 #044D7F;
+    top: 5px;
+}
+
+.rk-buttons:active > span {
+    top: -45px;
+} */
